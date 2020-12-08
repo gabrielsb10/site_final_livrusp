@@ -2,8 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+  <title>{% block title %}{% endblock %}</title>
 </head>
+<header>
+  <h1>LivrUSP</h1> {% block header %} {% endblock %}
+</header>
 <body>
   <main>
     {% block content %}
