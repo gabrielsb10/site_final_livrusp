@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: gbelem4@usp.br
+Date: Tue, 08 Dec 2020 14:13:41 -0000
+Message-ID: <160743682147.36328.4388407436557978414@DESKTOP-618CL32>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MQ/aek76s-596fc9701078ba872e1f9b9677c3c4ea/
+
+Your username, in case you’ve forgotten: livrusp
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
