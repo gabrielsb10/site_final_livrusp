@@ -2,19 +2,22 @@
 
 {% block title %}LivrUSP{% endblock %}
 
-{% block header %} 
+{% block header %}
 {% if user.is_authenticated %}
-{%  include 'navbar.html' %}
 
 {% else %}
-  <p>You are not logged in</p>
+
 {% endif %}
 {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <a class="btn btn-primary" href="{% url 'busca' %}">Busca de livros</a>
+Olá {{ user.username }}!
+<a class="btn btn-primary" href="{% url 'busca' %}">Busca de livros</a>
 
+{% else %}
+<a class="btn btn-primary" href="{% url 'login' %}">Faça o login</a>
+<p>É novo por aqui?</p>
+<a class="btn btn-primary" href="{% url 'register' %}">Se cadastre</a>
 {% endif %}
 {% endblock %}

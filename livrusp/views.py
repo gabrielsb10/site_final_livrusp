@@ -78,3 +78,9 @@ def logoutUser(request):
 
 def busca(request):
 	return render(request, 'busca.html')
+
+def cad_venda(request):
+	return render(request, 'cad_venda.html')
+
+def cad_compra(request):
+	return render(request, 'cad_compra.html')
