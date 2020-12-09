@@ -13,8 +13,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <a class="btn btn-primary" href="{% url 'busca' %}">Busca de livros</a>
+  Olá, {{ user.username }}! Busque os livros que quer comprar!
 
 {% endif %}
 {% endblock %}
