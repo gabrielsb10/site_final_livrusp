@@ -12,6 +12,9 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 
+from .models import cad_venda
+from .forms import FormLivroVenda
+
 # Create your views here.
 from .models import *
 
@@ -77,10 +80,29 @@ def logoutUser(request):
     return redirect('login')
 
 def busca(request):
-	return render(request, 'busca.html')
+    return render(request, 'busca.html')
 
-def cad_venda(request):
-	return render(request, 'cad_venda.html')
 
 def cad_compra(request):
-	return render(request, 'cad_compra.html')
+    return render(request, 'cad_compra.html')
+
+
+
+def cad_venda(request):
+    form = FormLivroVenda(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            livro_venda = cad_venda()
+            livro_venda.title = form.cleaned_data['title']
+            livro_venda.author = form.cleaned_data['author']
+            livro_venda.genre = form.cleaned_data['genre']
+            livro_venda.field = form.cleaned_data['field']
+            livro_venda.subject = form.cleaned_data['subject']
+            livro_venda.price = form.cleaned_data['price']
+            form.save()
+            messages.success(request, 'Cadastrado!')
+        else:
+            messages.error(request, 'Erro.')
+    
+    return render(request, 'cad_venda.html')
