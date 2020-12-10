@@ -8,6 +8,10 @@ from .models import *
 
 class FormLivroVenda(ModelForm):
     class Meta:
-        model = cad_venda
+        model = Cad_venda
         fields = "__all__"
 
+class FormLivroCompra(ModelForm):
+    class Meta:
+        model = Cad_compra
+        fields = "__all__"
