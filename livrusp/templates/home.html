@@ -12,8 +12,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-Olá {{ user.username }}!
-<a class="btn btn-primary" href="{% url 'busca' %}">Busca de livros</a>
+<p>Olá {{ user.username }}!</p>
 
 {% else %}
 <a class="btn btn-primary" href="{% url 'login' %}">Faça o login</a>
