@@ -12,13 +12,15 @@
   <h1>LivrUSP</h1> {% block header %} {% endblock %}
   {% if user.is_authenticated %}
   {% block nav %}
-  <ul id="nav">
-    <li>{% block nav-home %}<a href="{% url 'home' %}">Home</a>{% endblock %}</li>
-    <li>{% block nav-busca %}<a href="{% url 'busca' %}">Buscar Livros</a>{% endblock %}</li>
-    <li>{% block nav-venda %}<a href="{% url 'cad_venda' %}">Cadastrar livros para venda</a>{% endblock %}</li>
-    <li>{% block nav-compra %}<a href="{% url 'cad_compra' %}">Cadastrar livros para compra</a>{% endblock %}</li>
-    <li>{% block nav-logout %}<a href="{% url 'logout' %}">Logout</a>{% endblock %}</li>
-  </ul>
+  <div class="menu">
+    <ul id="nav">
+      <li>{% block nav-home %}<a href="{% url 'home' %}">Home</a>{% endblock %}</li>
+      <li>{% block nav-busca %}<a href="{% url 'busca' %}">Buscar Livros</a>{% endblock %}</li>
+      <li>{% block nav-venda %}<a href="{% url 'cad_venda' %}">Cadastrar livros para venda</a>{% endblock %}</li>
+      <li>{% block nav-compra %}<a href="{% url 'cad_compra' %}">Cadastrar livros para compra</a>{% endblock %}</li>
+      <li>{% block nav-logout %}<a href="{% url 'logout' %}">Logout</a>{% endblock %}</li>
+    </ul>
+  </div>
   {% endblock %}
   {% endif %}
 </header>
