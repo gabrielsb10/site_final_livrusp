@@ -12,7 +12,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Olá, {{ user.username }}! Busque os livros que quer comprar!
+  Olá, {{ user.customer.name }}! Busque os livros que quer comprar!
 
 <form action="{% url 'busca' %}" method="get">
   <input name="q" type="text" placeholder="Search...">

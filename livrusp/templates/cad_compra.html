@@ -12,7 +12,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Olá, {{ user.username }}! Cadastre o livro que deseja comprar!
+  Olá, {{ user.customer.name }}! Cadastre o livro que deseja comprar!
 
 <div class="container h-100">
   <div class="d-flex justify-content-center h-100">
