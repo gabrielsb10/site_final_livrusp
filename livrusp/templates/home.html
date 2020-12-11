@@ -3,11 +3,7 @@
 {% block title %}LivrUSP{% endblock %}
 
 {% block header %}
-{% if user.is_authenticated %}
 
-{% else %}
-
-{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -17,6 +13,6 @@
 {% else %}
 <a class="btn btn-primary" href="{% url 'login' %}">Faça o login</a>
 <p>É novo por aqui?</p>
-<a class="btn btn-primary" href="{% url 'register' %}">Se cadastre</a>
+<a class="btn btn-primary" href="{% url 'register' %}">Cadastre-se</a>
 {% endif %}
 {% endblock %}

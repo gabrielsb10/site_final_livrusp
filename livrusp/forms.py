@@ -9,9 +9,9 @@ from .models import *
 class FormLivroVenda(ModelForm):
     class Meta:
         model = Cad_venda
-        fields = "__all__"
+        exclude = ['usuario']
 
 class FormLivroCompra(ModelForm):
     class Meta:
         model = Cad_compra
-        fields = "__all__"
+        exclude = ['usuario']

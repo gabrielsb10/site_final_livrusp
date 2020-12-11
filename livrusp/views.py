@@ -93,8 +93,10 @@ def cad_venda(request):
             livro_venda.field = form.cleaned_data['field']
             livro_venda.subject = form.cleaned_data['subject']
             livro_venda.price = form.cleaned_data['price']
-            form.save()
-            messages.success(request, 'Cadastrado!')
+            f = form.save(commit=False)
+            f.usuario = request.user
+            f.save()
+            messages.success(request, 'Livro cadastrado!')
         else:
             messages.error(request, 'Erro.')
     
@@ -112,8 +114,10 @@ def cad_compra(request):
             livro_compra.genre = form.cleaned_data['genre']
             livro_compra.field = form.cleaned_data['field']
             livro_compra.subject = form.cleaned_data['subject']
-            form.save()
-            messages.success(request, 'Cadastrado!')
+            f = form.save(commit=False)
+            f.usuario = request.user
+            f.save()
+            messages.success(request, 'Livro cadastrado!')
         else:
             messages.error(request, 'Erro.')
     
