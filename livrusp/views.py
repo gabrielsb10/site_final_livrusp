@@ -80,11 +80,11 @@ def logoutUser(request):
 def busca(request):
     if request.GET.get('q'):
         q = request.GET.get('q')
-        results = Cad_venda.objects.filter(title = q)
+        results = Cad_venda.objects.filter(Q(titleicontains = q) | Q(authoricontains = q) | Q(genreicontains = q) | Q(fieldsicontains = q) | Q(subject__icontains = q))
         return render(request, 'busca.html', {
             'results': results
-        })  
-    return render(request, 'busca.html')    
+        })
+    return render(request, 'busca.html')  
 
 
 def cad_venda(request):
