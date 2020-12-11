@@ -1,1 +1,33 @@
 {% extends 'layout.html' %}
+
+{% block title %}LivrUSP{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>Olá {{ user.username }}!</p>
+
+{% for livro in meus_livros_compra %}
+
+<p>
+    {{livro.title}} <br>
+    {{livro.author}}<br>
+    {{livro.genre}}<br>
+    {{livro.field}}<br>
+    {{livro.subject}}
+</p>
+{% empty %}
+<p>Você ainda não cadastrou nenhum livro para compra.</p>
+
+
+{% endfor %}
+
+{% else %}
+<a class="btn btn-primary" href="{% url 'login' %}">Faça o login</a>
+<p>É novo por aqui?</p>
+<a class="btn btn-primary" href="{% url 'register' %}">Cadastre-se</a>
+{% endif %}
+{% endblock %}

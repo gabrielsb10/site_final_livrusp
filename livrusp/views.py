@@ -140,3 +140,8 @@ def mostrar_livros_venda(request):
     return render(request, 'meus_livros_venda.html', {
         'meus_livros_venda': Cad_venda.objects.filter(usuario = request.user)
     })
+
+def mostrar_livros_compra(request):
+    return render(request, 'meus_livros_compra.html', {
+        'meus_livros_compra': Cad_compra.objects.filter(usuario = request.user)
+    })
