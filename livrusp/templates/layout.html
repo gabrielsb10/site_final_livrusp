@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<link href="{% static 'livrusp/style.css' %}" rel="stylesheet">
+
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<header>
+  <h1>LivrUSP</h1> {% block header %} {% endblock %}
+  {% if user.is_authenticated %}
+  {% block nav %}
+  <div class="menu">
+    <ul id="nav">
+      <li>{% block nav-home %}<a href="{% url 'home' %}">Home</a>{% endblock %}</li>
+      <li>{% block nav-busca %}<a href="{% url 'busca' %}">Buscar Livros</a>{% endblock %}</li>
+      <li>{% block nav-venda %}<a href="{% url 'cad_venda' %}">Cadastrar livros para venda</a>{% endblock %}</li>
+      <li>{% block nav-compra %}<a href="{% url 'cad_compra' %}">Cadastrar livros para compra</a>{% endblock %}</li>
+      <li>{% block nav-logout %}<a href="{% url 'logout' %}">Logout</a>{% endblock %}</li>
+    </ul>
+  </div>
+  {% endblock %}
+  {% endif %}
+</header>
+
+<body>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  {% if messages %}
+  <p class="messages">
+    {% for message in messages %}
+    <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+      {% endfor %}
+  </p>
+  {% endif %}
+
+</body>
+
+</html>

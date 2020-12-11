@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}LivrUSP{% endblock %}
+
+{% block header %} 
+{% if user.is_authenticated %}
+
+{% else %}
+  <p>You are not logged in</p>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Olá, {{ user.username }}! Busque os livros que quer comprar!
+
+<form action="{% url 'busca' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
+<ul>
+  {% for result in results %}
+    <li>
+      Título:{{result.title}}
+      Autor:{{result.author}}
+    </li>
+  {% endfor %}
+</ul>
+
+{% endif %}
+{% endblock %}
