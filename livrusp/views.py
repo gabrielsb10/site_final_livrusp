@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView, ListView
 from .forms import FormLivroVenda, FormLivroCompra
 from .models import *
 
@@ -77,7 +78,13 @@ def logoutUser(request):
 
 
 def busca(request):
-    return render(request, 'busca.html')
+    if request.GET.get('q'):
+        q = request.GET.get('q')
+        results = Cad_venda.objects.filter(title = q)
+        return render(request, 'busca.html', {
+            'results': results
+        })  
+    return render(request, 'busca.html')    
 
 
 def cad_venda(request):

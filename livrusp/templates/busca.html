@@ -14,5 +14,17 @@
 {% if user.is_authenticated %}
   Olá, {{ user.username }}! Busque os livros que quer comprar!
 
+<form action="{% url 'busca' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
+<ul>
+  {% for result in results %}
+    <li>
+      livro:{{result.title}}
+    </li>
+  {% endfor %}
+</ul>
+
 {% endif %}
 {% endblock %}
