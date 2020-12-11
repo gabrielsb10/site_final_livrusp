@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, ListView
 from .forms import FormLivroVenda, FormLivroCompra
 from .models import *
+from django.db.models import Q
 
 
 # Create your views here.
@@ -22,8 +23,11 @@ def registerPage(request):
         if request.method == "GET":
             return render(request, "registration/register.html")
         elif request.method == "POST":
+            name = request.POST["name"]
             username = request.POST["username"]
+            campus = request.POST["campus"]
             email = request.POST["email"]
+            phone = request.POST["phone"]
             password = request.POST["password"]
             password2 = request.POST["password2"]
 
@@ -42,9 +46,10 @@ def registerPage(request):
 
             # Attempt to create new user
             try:
-                user = User.objects.create_user(
-                    username, email, password)           
+                user = User.objects.create_user(username, email, password)           
                 user.save()
+                c = Customer(user= user, name = name , phone = phone, campus = campus)
+                c.save() 
             except IntegrityError:
                 messages.error(request, 'Usuário já existe.')
                 return render(request, "registration/register.html")
@@ -80,7 +85,7 @@ def logoutUser(request):
 def busca(request):
     if request.GET.get('q'):
         q = request.GET.get('q')
-        results = Cad_venda.objects.filter(Q(titleicontains = q) | Q(authoricontains = q) | Q(genreicontains = q) | Q(fieldsicontains = q) | Q(subject__icontains = q))
+        results = Cad_venda.objects.filter(Q(title__icontains = q) | Q(author__icontains = q) | Q(genre__icontains = q) | Q(field__icontains = q) | Q(subject__icontains = q))
         return render(request, 'busca.html', {
             'results': results
         })
@@ -129,3 +134,9 @@ def cad_compra(request):
             messages.error(request, 'Erro.')
     
     return render(request, 'cad_compra.html')
+
+
+def mostrar_livros_venda(request):
+    return render(request, 'meus_livros_venda.html', {
+        'meus_livros_venda': Cad_venda.objects.filter(usuario = request.user)
+    })

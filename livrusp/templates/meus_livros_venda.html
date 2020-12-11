@@ -10,6 +10,21 @@
 {% if user.is_authenticated %}
 <p>Olá {{ user.username }}!</p>
 
+{% for livro in meus_livros_venda %}
+
+<p>
+    {{livro.title}} <br>
+    {{livro.author}}<br>
+    {{livro.genre}}<br>
+    {{livro.field}}<br>
+    {{livro.subject}}<br>
+    {{livro.price}}
+</p>
+{% empty %}
+<p>Você ainda não cadastrou nenhum livro para venda.</p>
+
+
+{% endfor %}
 
 {% else %}
 <a class="btn btn-primary" href="{% url 'login' %}">Faça o login</a>
