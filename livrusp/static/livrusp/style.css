@@ -2,6 +2,13 @@ h1 {
     color: rgb(245, 114, 27);
 }
 
+header {
+    text-align: center;
+    background-color: rgb(238, 238, 247);
+    margin: -15px;
+    padding: -15px;
+    margin-top: 0;
+}
 
 body {
     text-align: center;
@@ -9,26 +16,24 @@ body {
 
 .menu {
     width: 100%;
-    height: 70px;
-    background-color: #06121b00;
-    position: relative;
-    float:center;
-    list-style: upper-roman;
+    height: 100px;
     align-items: center;
 }
 
 .menu ul {
-    float:center;
+    width :750px;
+    display: inline-block;
     list-style: none;
     position: relative;
-    background-color: black;
     text-align: center;
+    background-color: rgb(154, 132, 155);
 }
 
 .menu ul li {
     width: 150px;
+    float:left;
     text-align: center;
     list-style: none;
     position: relative;
-    background-color: black;
+    background-color: rgb(154, 132, 155);
 }
