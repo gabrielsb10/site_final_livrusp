@@ -10,9 +10,60 @@
 {% if user.is_authenticated %}
 <p>Olá {{ user.customer.name }}!</p>
 
+
 {% else %}
 <a class="btn btn-primary" href="{% url 'login' %}">Faça o login</a>
 <p>É novo por aqui?</p>
 <a class="btn btn-primary" href="{% url 'register' %}">Cadastre-se</a>
 {% endif %}
+
+<p>Bem vindo ao LivrUSP, uma ferramenta de Uspianos para a comunidade USP. Aqui você poderá comprar e vender livros, sejam estes acadêmicos
+    ou literários, para a troca de conhecimento dentro da comunidade USPIANA, de forma a ajudar os alunos a conseguirem materiais didáticos
+    assecíveis aos seus cursos e incentivar o intercâmbio de ideias e conhecimentos entres os alunos.</p>
+    <div class="row">
+      <div class="leftcolumn">
+        <div class="card">
+          <h2>Mecânica Geral</h2>
+          <h5>Livro à venda, Dez, 2018</h5>
+          <div class="fakeimg" style="height:200px;">Image</div>
+          <p> Engenharia - Mecânica - R$60 (negociável)
+          </p>
+          <p>Finalizei a matéria de Mecânica I, do segundo semestre da POLI, e gostaria de passar adiante meu livro por um preço amigável, me ajudou
+            bastante com a matéria e com o conteúdo como um todo, recomendo bastante, poder ser utilizado em Mecânica 2 também.
+          </p>
+        </div>
+        <div class="card">
+          <h2>Eletrônica analógica</h2>
+          <h5>À procura de ajuda, Jul, 2018</h5>
+          <div class="fakeimg" style="height:200px;">Image</div>
+          <p> Engenharia - Eletrônica 
+          </p>
+          <p>Estou indo para meu sexto semestre mas não encontro em lugar algum livros de Eletrônica, estou desesperado por livros que coubram 
+            amplificadores operacianis, filtros até terceira ordem, transformadores e tensão de offset.
+          </p>
+        </div>
+      </div>
+
+      <div class="rightcolumn">
+        <div class="card">
+          <h2>Sobre nós</h2>
+          <div class="fakeimg" style="height:100px;">Image</div>
+          <p>Somos um grupo de alunos do sexto semestre de engenharia mecatrônica, realizando um projeto referente à discilpina de Sistemas de
+            Informações, para aprofundar os conhecimentos adqueridos em sala de aula.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Livros populares</h3>
+          <div class="fakeimg"><p>Image</p></div>
+          <div class="fakeimg"><p>Image</p></div>
+          <div class="fakeimg"><p>Image</p></div>
+        </div>
+        <div class="card">
+          <h3>Siga-nos</h3>
+          <p>Instagram: @LivrUSP
+            Facebook: LivrUSP
+          </p>
+        </div>
+      </div>
+    </div>  
 {% endblock %}
