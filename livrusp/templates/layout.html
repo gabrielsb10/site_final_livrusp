@@ -18,6 +18,7 @@
 </header>
 
 <body>
+  {% if user.is_authenticated %}
   <div class="menu">
     {% block nav-home %}<a href="{% url 'home' %}">Home</a>{% endblock %}
     {% block nav-busca %}<a href="{% url 'busca' %}">Buscar Livros</a>{% endblock %}
@@ -26,6 +27,9 @@
     {% block nav-chat %}<a href="{% url 'chat' %}">Chat</a>{% endblock %}
     {% block nav-logout %}<a href="{% url 'logout' %}" style="float: right">Logout</a>{% endblock %}
   </div>
+  
+  {% endif %}
+  
   
   <main>
     

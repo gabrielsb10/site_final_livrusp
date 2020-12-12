@@ -12,9 +12,10 @@
 
 
 {% else %}
-<a class="btn btn-primary" href="{% url 'login' %}">Faça o login</a>
-<p>É novo por aqui?</p>
-<a class="btn btn-primary" href="{% url 'register' %}">Cadastre-se</a>
+<div class="menu">
+    {% block nav-login %}<a href="{% url 'login' %}">Login</a>{% endblock %}
+    {% block nav-register %}<a href="{% url 'register' %}">Cadastrar-se</a>{% endblock %}
+</div>
 {% endif %}
 
 <p>Bem vindo ao LivrUSP, uma ferramenta de Uspianos para a comunidade USP. Aqui você poderá comprar e vender livros, sejam estes acadêmicos
