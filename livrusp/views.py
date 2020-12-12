@@ -186,3 +186,17 @@ def chat(request):
         messages.success(request, 'Mensagem enviada')
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def apagar_livro_venda(request):
+    id = request.POST['id']
+    livro = Cad_venda.objects.get(pk = id)
+    livro.delete()
+    messages.success(request, 'Livro apagado!')
+    return render(request, 'meus_livros_venda.html')
+
+def apagar_livro_compra(request):
+    id = request.POST['id']
+    livro = Cad_compra.objects.get(pk = id)
+    livro.delete()
+    messages.success(request, 'Livro apagado!')
+    return render(request, 'meus_livros_compra.html')

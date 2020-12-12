@@ -20,6 +20,14 @@
     <b>Disciplina:</b> {{livro.subject}}<br>
     <b>Preço:</b> {{livro.price}} reais
 </p>
+
+<form action="{% url 'apagar_livro_venda' %}" method='post'>
+    {% csrf_token %}
+    <input class="btn apagar_venda_btn" type="submit" value="Apagar livro">
+    <input type='hidden' name='id' value='{{ livro.id }}'>
+</form>
+
+
 {% empty %}
 <p>Você ainda não cadastrou nenhum livro para venda.</p>
 

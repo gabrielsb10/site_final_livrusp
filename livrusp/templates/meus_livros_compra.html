@@ -19,6 +19,14 @@
     <b>Área do conhecimento:</b> {{livro.field}}<br>
     <b>Disciplina:</b> {{livro.subject}}
 </p>
+
+
+<form action="{% url 'apagar_livro_compra' %}" method='post'>
+    {% csrf_token %}
+    <input class="btn apagar_compra_btn" type="submit" value="Apagar livro">
+    <input type='hidden' name='id' value='{{ livro.id }}'>
+</form>
+
 {% empty %}
 <p>Você ainda não cadastrou nenhum livro para compra.</p>
 
