@@ -1,5 +1,6 @@
 h1 {
-    color: rgb(245, 114, 27);
+    /*color: rgb(245, 114, 27);*/
+    color: navy;
 }
 * {
   box-sizing: border-box;
@@ -17,7 +18,7 @@ body {
     margin-top: 0;
  }*/
 header {
-    background-color: #4e2828;
+    background-color: #f88b0c;
     text-align: center;
     padding: 5px;
 }
@@ -30,7 +31,8 @@ body {
 .menu {
     width: 100%;
     overflow: hidden;
-    background-color: #333;
+    background-color: navy;
+    /*background-color: #333;*/
     text-align: center;
     margin: 0px;
     padding: 0px;
