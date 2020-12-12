@@ -13,10 +13,11 @@
 {% for chat in chats %}
 
     <div>
-        <h3>{{ chat.0.livro.title }}</h3>
+        <h1>{{ chat.0.0.first.livro.title }}</h1>
+        <h1>{{ chat.0.0.first.livro.author }}</h1>
         {% for conversa in chat %}
             <div>
-                <h5>{{ conversa.first.sender.customer.name }}</h5>
+                <h3>{{ conversa.0.first.sender.customer.name }}</h3>
                 {% for mensagem in conversa.0 %}
                     <p><b>{{ mensagem.sender.customer.name }} enviou em {{ mensagem.date_sent }}:</b></p>
                     <p>{{ mensagem.conteudo }}</p>
