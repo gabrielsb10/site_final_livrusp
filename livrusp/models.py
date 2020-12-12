@@ -43,3 +43,10 @@ class Cad_compra(models.Model):
 	def __str__(self):
 		return self.title
 
+class Mensagem(models.Model):
+	conteudo = models.CharField(max_length=200, null=True)
+	sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="enviadas")
+	receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recebidas")
+	date_sent = models.DateTimeField(auto_now_add=True, null=True)
+	livro = models.ForeignKey(Cad_venda, on_delete=models.CASCADE, related_name="mensagens")
+

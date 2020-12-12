@@ -9,5 +9,6 @@ urlpatterns = [
     path('cadastrar_livro_venda/', views.cad_venda, name="cad_venda"),
     path('cadastrar_livro_compra/', views.cad_compra, name="cad_compra"),
     path('meus_livros_para_venda/', views.mostrar_livros_venda, name="mostrar_livros_venda"),
-    path('meus_livros_para_compra/', views.mostrar_livros_compra, name="mostrar_livros_compra")
+    path('meus_livros_para_compra/', views.mostrar_livros_compra, name="mostrar_livros_compra"),
+    path('chat/', views.chat, name="chat")
 ]

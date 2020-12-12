@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block title %}LivrUSP{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>Olá {{ user.username }}!</p>
+
+{% for chat in chats %}
+
+    <div>
+        <h3>{{ chat[0].livro.title }}</h3>
+        {% for chat_sender in chat %}
+            <div>
+                <h5>{{ chat_sender.first.sender.customer.name }}</h5>
+                {% for mensagem in chat_sender %}
+                    <p><b>{{ mensagem.sender.customer.name }} Enviou em {{ mensagem.date_sent }}:</b></p>
+                    <p>{{ mensagem.conteudo }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% empty %}
+    <p>Nenhuma mensagem.</p>
+
+    <form action="{% url 'chat' %}" method='post'>
+        {% csrf_token %}
+        <input type='text' required name='mensagem'>
+        <input type='submit' value='Enviar'>
+        <input type='hidden' name='sender' value=''
+    </form>
+
+{% endfor %}
+
+
+
+{% else %}
+<a class="btn btn-primary" href="{% url 'login' %}">Faça o login</a>
+<p>É novo por aqui?</p>
+<a class="btn btn-primary" href="{% url 'register' %}">Cadastre-se</a>
+{% endif %}
+{% endblock %}

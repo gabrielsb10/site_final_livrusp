@@ -145,3 +145,21 @@ def mostrar_livros_compra(request):
     return render(request, 'meus_livros_compra.html', {
         'meus_livros_compra': Cad_compra.objects.filter(usuario = request.user)
     })
+
+def chat(request):
+    if request.method == 'GET':
+        livros = Mensagem.objects.values_list('livro', flat=True).filter(receiver = request.user).distinct()
+        chats = []
+        for livro in livros:
+            chats_livro = []
+            senders = Mensagem.objects.values_list('sender', flat=True).filter(receiver = request.user, livro = livro).distinct()
+            for sender in senders:
+                aux = Mensagem.objects.filter(receiver = request.user, livro = livro, sender = sender)
+                chats_livro.append(aux)
+            chats.append(chats_livro)
+        return render(request, 'chat.html', {
+            'chats': chats
+        })
+    
+    if request.method == 'POST':
+        mensagem 
