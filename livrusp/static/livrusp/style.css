@@ -1,17 +1,31 @@
 h1 {
-    /*color: rgb(245, 114, 27);*/
-    color: navy;
+    color: #0B0189; 
 }
 * {
   box-sizing: border-box;
 }
+
+h2 {
+    color: #163FD1;
+}
+
+#login_button {
+    background-color: #0468C3;
+    width:100px;
+    height:40px;
+    color:#E5E5E5;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    
+}
+
 body {
   font-family: Arial;
   padding: 10px;
   background: #f1f1f1;
   
 }
-
 
 header {
     background-color: #f88b0c;
@@ -49,8 +63,6 @@ body {
     float:center;
 }
 
-
-
 .leftcolumn {   
   float: left;
   width: 72%;
@@ -69,7 +81,6 @@ body {
     padding: 20px;
     margin-top: 20px;
 }
-
 
 
 .row:after {
@@ -155,5 +166,15 @@ input[type=email]:focus {
     background-color: #ffffff;
     padding: 10px;
     text-align: center;
+}
+
+#titulos{
+    font-weight: bold;
+    font-size: 25px;
+    color: #163FD1;
+}
+
+#labels{
+    text-align: right;
 }
   
