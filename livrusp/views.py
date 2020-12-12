@@ -12,6 +12,7 @@ from django.views.generic import TemplateView, ListView
 from .forms import FormLivroVenda, FormLivroCompra
 from .models import *
 from django.db.models import Q
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 # Create your views here.
@@ -154,12 +155,34 @@ def chat(request):
             chats_livro = []
             senders = Mensagem.objects.values_list('sender', flat=True).filter(receiver = request.user, livro = livro).distinct()
             for sender in senders:
-                aux = Mensagem.objects.filter(receiver = request.user, livro = livro, sender = sender)
-                chats_livro.append(aux)
+                sender_receiver = []
+                recebidas = Mensagem.objects.filter(receiver = request.user, livro = livro, sender = sender)
+                enviadas = Mensagem.objects.filter(sender = request.user, livro = livro, receiver = sender)
+                sender_receiver.append(recebidas)
+                sender_receiver.append(enviadas)
+                chats_livro.append(sender_receiver)
             chats.append(chats_livro)
         return render(request, 'chat.html', {
             'chats': chats
         })
     
-    if request.method == 'POST':
-        mensagem 
+    elif request.method == 'POST':
+        conteudo = request.POST['mensagem']
+        receiver = request.POST['receiver']
+        livro = request.POST['livro']
+        sender = request.user
+
+        receiver = User.objects.get(pk = receiver)
+        livro = Cad_venda.objects.get(pk = livro)
+
+        m = Mensagem(
+            conteudo = conteudo, 
+            receiver = receiver,
+            sender = sender,
+            livro = livro
+        )
+        m.save()
+
+        messages.success(request, 'Mensagem enviada')
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

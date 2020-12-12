@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ class Customer(models.Model):
 	name = models.CharField(max_length=200, null=True)
 	campus = models.CharField(max_length=200, null=True)
 	phone = models.CharField(max_length=200, null=True)
-	date_created = models.DateTimeField(auto_now_add=True, null=True)
+	date_created = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return self.name
@@ -47,6 +48,6 @@ class Mensagem(models.Model):
 	conteudo = models.CharField(max_length=200, null=True)
 	sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="enviadas")
 	receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recebidas")
-	date_sent = models.DateTimeField(auto_now_add=True, null=True)
+	date_sent = models.DateTimeField(default=timezone.now)
 	livro = models.ForeignKey(Cad_venda, on_delete=models.CASCADE, related_name="mensagens")
 
