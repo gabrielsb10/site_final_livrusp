@@ -18,16 +18,31 @@
   <input name="q" type="text" placeholder="Search...">
 </form>
 
+<script>
+  function mostrar(id){
+    const form = document.querySelector(`#${id}`)
+    alert('oi')
+    form.style.display = "block"
+  }
+</script>
+
 <ul>
   {% for result in results %}
     <li>
-      Título:{{result.title}}
-      Autor:{{result.author}}
-      Vendedor:{{result.usuario.customer.name}}
-      Telefone do vendedor:{{result.usuario.customer.phone}}
+      <h3>Título do livro: {{result.title}} | Autor:{{result.author}}</h3>
+      Vendedor:{{result.usuario.customer.name}} | Telefone do vendedor:{{result.usuario.customer.phone}}<br>
+      <form id='{{result.id}}' action="{% url 'chat' %}" method='post'>
+        {% csrf_token %}
+        <input type='text' required name='mensagem'>
+        <input type='submit' value='Enviar mensagem para o vendedor'>
+        <input type='hidden' name='receiver' value='{{ result.usuario.id }}'>
+        <input type='hidden' name='livro' value='{{ result.id }}'>
+      </form>
     </li>
   {% endfor %}
 </ul>
 
 {% endif %}
+
+
 {% endblock %}
