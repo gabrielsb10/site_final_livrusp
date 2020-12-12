@@ -12,19 +12,13 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Olá, {{ user.customer.name }}! Busque os livros que quer comprar!
+  <p>Olá, {{ user.customer.name }}!</p>
 
+<h3 id="form-title">Busque os livros que deseja comprar!</h3>
 <form action="{% url 'busca' %}" method="get">
   <input name="q" type="text" placeholder="Search...">
 </form>
 
-<script>
-  function mostrar(id){
-    const form = document.querySelector(`#${id}`)
-    alert('oi')
-    form.style.display = "block"
-  }
-</script>
 
 <ul>
   {% for result in results %}
