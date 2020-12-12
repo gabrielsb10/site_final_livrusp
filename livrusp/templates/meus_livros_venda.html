@@ -13,12 +13,12 @@
 {% for livro in meus_livros_venda %}
 
 <p>
-    {{livro.title}} <br>
-    {{livro.author}}<br>
-    {{livro.genre}}<br>
-    {{livro.field}}<br>
-    {{livro.subject}}<br>
-    {{livro.price}}
+    <b>Título:</b> {{livro.title}}<br>
+    <b>Autor:</b> {{livro.author}}<br>
+    <b>Gênero:</b> {{livro.genre}}<br>
+    <b>Área do conhecimento:</b> {{livro.field}}<br>
+    <b>Disciplina:</b> {{livro.subject}}<br>
+    <b>Preço:</b> {{livro.price}} reais
 </p>
 {% empty %}
 <p>Você ainda não cadastrou nenhum livro para venda.</p>
