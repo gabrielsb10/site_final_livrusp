@@ -16,34 +16,43 @@
 </div>
 {% for chat in chats %}
     <div class="card">
- 
-    <div>
-        <h1>{{ chat.0.0.first.livro.title }}</h1>
-        <h1>{{ chat.0.0.first.livro.author }}</h1>
-        {% for conversa in chat %}
-            <div>
-                <h3>{{ conversa.0.first.sender.customer.name }}</h3>
-                {% for mensagem in conversa.0 %}
-                    <p><b>{{ mensagem.sender.customer.name }} enviou em {{ mensagem.date_sent }}:</b></p>
-                    <p>{{ mensagem.conteudo }}</p>
+
+    
+        <div>
+            <h1>{{ chat.0.0.livro.title }}</h1>
+            <h1>{{ chat.0.0.livro.author }}</h1>
+            {% for conversa in chat %}
+                {% if request.user.id == conversa.0.receiver.id %}
+                    <h2>{{ conversa.0.sender.customer.name }}</h2>
+                {% else %}
+                    <h2>{{ conversa.0.receiver.customer.name }}</h2>
+                {% endif %}
+                
+                {% for mensagem in conversa %}
+                    <div>
+                        <p><b>{{ mensagem.sender.customer.name }} enviou em {{ mensagem.date_sent }}:</b></p>
+                        <p>{{ mensagem.conteudo }}</p>
+                    </div>
+                {% empty %}
+                <p>Sem mensagens</p>
                 {% endfor %}
-                <hr>
-                {% for mensagem in conversa.1 %}
-                    <p><b>{{ mensagem.sender.customer.name }} enviou em {{ mensagem.date_sent }}:</b></p>
-                    <p>{{ mensagem.conteudo }}</p>
-                {% endfor %}
+
                 <form action="{% url 'chat' %}" method='post'>
                     {% csrf_token %}
                     <input type='text' required name='mensagem'>
                     <input type='submit' value='Enviar'>
-                    <input type='hidden' name='receiver' value='{{ conversa.0.first.sender.id }}'>
-                    <input type='hidden' name='livro' value='{{ conversa.0.first.livro.id }}'>
+                    <input type='hidden' name='livro' value='{{ conversa.0.livro.id }}'>
+                    {% if request.user.id == conversa.0.receiver.id %}
+                        <input type='hidden' name='receiver' value='{{ conversa.0.sender.id }}'>
+                    {% else %}
+                        <input type='hidden' name='receiver' value='{{ conversa.0.receiver.id }}'>
+                    {% endif %}
                 </form>
-            </div>
+            {% endfor %}
+            
+            <hr>
         </div>
-        {% endfor %}
     </div>
-
     {% empty %}
     <div class="card">
  
