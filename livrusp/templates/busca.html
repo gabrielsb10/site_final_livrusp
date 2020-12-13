@@ -12,13 +12,15 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+<div class="card">
+ 
   <p>Olá, {{ user.customer.name }}!</p>
 
 <h3 id="form-title">Busque os livros que deseja comprar!</h3>
 <form action="{% url 'busca' %}" method="get">
   <input name="q" type="text" placeholder="Search...">
 </form>
-
+</div>
 
 <ul>
   {% for result in results %}

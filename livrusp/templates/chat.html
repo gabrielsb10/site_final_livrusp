@@ -8,10 +8,15 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<p>Olá {{ user.customer.name }}!</p>
-
+<div class="card">
+ 
+<p>Olá {{ user.customer.name }}! Aqui você pode ver suas mensagens, referentes às suas suas compras/vendas, para se comunicar com os
+    outros envolvidos e permitir a chegada em um acordo.
+</p>
+</div>
 {% for chat in chats %}
-
+    <div class="card">
+ 
     <div>
         <h1>{{ chat.0.0.first.livro.title }}</h1>
         <h1>{{ chat.0.0.first.livro.author }}</h1>
@@ -35,11 +40,15 @@
                     <input type='hidden' name='livro' value='{{ conversa.0.first.livro.id }}'>
                 </form>
             </div>
+        </div>
         {% endfor %}
     </div>
 
     {% empty %}
-    <p>Nenhuma mensagem.</p>
+    <div class="card">
+ 
+    <p>Nenhuma mensagem :(</p>
+    </div>
 
     
 

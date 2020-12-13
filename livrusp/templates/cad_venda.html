@@ -12,7 +12,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<p>Olá, {{ user.customer.name }}!</p>
+<div class="card">
+<p>Olá, {{ user.customer.name }}!, bem-vindo à aba de cadastro, aqui você poderá cadastrar livros para venda, assim, outros usuários poderão encontrá-los,
+  por meio de seu nome, área, autor e outras informações.
+</p>
+</div>
 
 <div class="container h-100">
   <div class="d-flex justify-content-center h-100">

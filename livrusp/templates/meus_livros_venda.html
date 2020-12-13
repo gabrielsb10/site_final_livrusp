@@ -8,10 +8,14 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<p>Olá {{ user.customer.name }}!</p>
-
+<div class="card">
+ 
+<p>Olá {{ user.customer.name }}!Aqui você pode ver os livros que disponibilizou para venda, de forma a organizá-los para facilitar o acesso a estes
+    e permitir uma melhor vizualicação.</p>
+</div>
 {% for livro in meus_livros_venda %}
-
+<div class="card">
+ 
 <p>
     <b>Título:</b> {{livro.title}}<br>
     <b>Autor:</b> {{livro.author}}<br>
@@ -29,9 +33,11 @@
 
 
 {% empty %}
-<p>Você ainda não cadastrou nenhum livro para venda.</p>
-
-
+<div class="card">
+ 
+<p>Você ainda não cadastrou nenhum livro para venda!</p>
+</div>
+</div>
 {% endfor %}
 
 {% else %}

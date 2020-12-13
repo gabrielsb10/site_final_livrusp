@@ -12,8 +12,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  <p>Olá, {{ user.customer.name }}!</p>
-
+<div class="card">
+  <p>Olá, {{ user.customer.name }}!, bem-vindx à aba de cadastro de compra, nela você pode indicar livros pelos quais você tem interesse,
+    seja pela área de conhecimento, autor, nome ou matéria de interesse, de forma a tornar simples e prática a busca.
+  </p>
+</div>
 <div class="container h-100">
   <div class="d-flex justify-content-center h-100">
     <div class="user_card">
