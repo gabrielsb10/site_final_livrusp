@@ -23,7 +23,7 @@
 
 <form action="{% url 'apagar_livro_compra' %}" method='post'>
     {% csrf_token %}
-    <input class="btn apagar_compra_btn" type="submit" value="Apagar livro">
+    <input class="btn btn-danger apagar_compra_btn" type="submit" value="Apagar livro">
     <input type='hidden' name='id' value='{{ livro.id }}'>
 </form>
 
