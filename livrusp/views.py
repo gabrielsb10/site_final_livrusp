@@ -13,6 +13,7 @@ from .forms import FormLivroVenda, FormLivroCompra
 from .models import *
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
+from itertools import chain
 
 
 # Create your views here.
@@ -147,6 +148,7 @@ def mostrar_livros_compra(request):
         'meus_livros_compra': Cad_compra.objects.filter(usuario = request.user)
     })
 
+"""
 def chat(request):
     if request.method == 'GET':
         livros = Mensagem.objects.values_list('livro', flat=True).filter(receiver = request.user).distinct()
@@ -160,6 +162,54 @@ def chat(request):
                 enviadas = Mensagem.objects.filter(sender = request.user, livro = livro, receiver = sender)
                 sender_receiver.append(recebidas)
                 sender_receiver.append(enviadas)
+                chats_livro.append(sender_receiver)
+            chats.append(chats_livro)
+        return render(request, 'chat.html', {
+            'chats': chats
+        })
+    
+    elif request.method == 'POST':
+        conteudo = request.POST['mensagem']
+        receiver = request.POST['receiver']
+        livro = request.POST['livro']
+        sender = request.user
+
+        receiver = User.objects.get(pk = receiver)
+        livro = Cad_venda.objects.get(pk = livro)
+
+        m = Mensagem(
+            conteudo = conteudo, 
+            receiver = receiver,
+            sender = sender,
+            livro = livro
+        )
+        m.save()
+
+        messages.success(request, 'Mensagem enviada')
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+"""
+
+def chat(request):
+    if request.method == 'GET':
+        livros_recebidos = Mensagem.objects.values_list('livro', flat=True).filter(receiver = request.user).distinct()
+        livros_enviados = Mensagem.objects.values_list('livro', flat=True).filter(sender = request.user).distinct()
+        #livros = livros_recebidos.union(livros_enviados)
+        #livros = list(chain(livros_recebidos, livros_enviados))
+        livros = (livros_enviados | livros_recebidos).distinct()
+        chats = []
+        for livro in livros:
+            chats_livro = []
+            senders = Mensagem.objects.values_list('sender', flat=True).filter(receiver = request.user, livro = livro).distinct()
+            for sender in senders:
+                sender_receiver = []
+                recebidas = Mensagem.objects.filter(receiver = request.user, livro = livro, sender = sender)
+                enviadas = Mensagem.objects.filter(sender = request.user, livro = livro, receiver = sender)
+                sender_receiver.append(recebidas)
+                sender_receiver.append(enviadas)
+                #sender_receiver = sorted(chain(recebidas, enviadas), key=attrgetter('date_sent'))
+                #sender_receiver = (enviadas | recebidas).distinct()
+                #sender_receiver = list(chain(enviadas, recebidas))
                 chats_livro.append(sender_receiver)
             chats.append(chats_livro)
         return render(request, 'chat.html', {
