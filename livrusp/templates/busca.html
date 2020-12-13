@@ -2,41 +2,51 @@
 
 {% block title %}LivrUSP{% endblock %}
 
-{% block header %} 
+{% block header %}
 {% if user.is_authenticated %}
 
 {% else %}
-  <p>You are not logged in</p>
+<p>Você não está logado, faça o login ou cadastre-se!</p>
 {% endif %}
 {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
 <div class="card">
- 
+
   <p>Olá, {{ user.customer.name }}!</p>
 
-<h3 id="form-title">Busque os livros que deseja comprar!</h3>
-<form action="{% url 'busca' %}" method="get">
-  <input name="q" type="text" placeholder="Search...">
-</form>
+  <h3 id="form-title">Busque os livros que deseja comprar!</h3>
+  <form action="{% url 'busca' %}" method="get">
+    <input name="q" type="text" placeholder="Digite o título do livro...">
+  </form>
 </div>
+
+{% if request.GET.q %}
 
 <ul>
   {% for result in results %}
-    <li>
-      <h3>Título do livro: {{result.title}} | Autor:{{result.author}}</h3>
-      Vendedor: {{result.usuario.customer.name}} | Telefone do vendedor: {{result.usuario.customer.phone}}<br>
-      <form id='{{result.id}}' action="{% url 'chat' %}" method='post'>
-        {% csrf_token %}
-        <input type='text' required name='mensagem'>
-        <input type='submit' value='Enviar mensagem para o vendedor'>
-        <input type='hidden' name='receiver' value='{{ result.usuario.id }}'>
-        <input type='hidden' name='livro' value='{{ result.id }}'>
-      </form>
-    </li>
+  <li>
+    <h3>Título do livro: {{result.title}} | Autor: {{result.author}}</h3>
+    Vendedor: {{result.usuario.customer.name}} | Telefone do vendedor: {{result.usuario.customer.phone}}<br>
+    <form id='{{result.id}}' action="{% url 'chat' %}" method='post'>
+      {% csrf_token %}
+      <input type='text' required name='mensagem'>
+      <input type='submit' value='Enviar mensagem para o vendedor'>
+      <input type='hidden' name='receiver' value='{{ result.usuario.id }}'>
+      <input type='hidden' name='livro' value='{{ result.id }}'>
+    </form>
+  </li>
+
+  {% empty %}
+
+  <p>Nenhum livro encontrado, faça outra busca!</p>
+
   {% endfor %}
+
 </ul>
+
+{% endif %}
 
 {% endif %}
 

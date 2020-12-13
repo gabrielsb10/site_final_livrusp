@@ -92,7 +92,10 @@ def busca(request):
         return render(request, 'busca.html', {
             'results': results
         })
-    return render(request, 'busca.html')  
+    else:
+        return render(request, 'busca.html')
+    
+    return render(request, 'busca.html')
 
 
 def cad_venda(request):
@@ -196,11 +199,15 @@ def apagar_livro_venda(request):
     livro = Cad_venda.objects.get(pk = id)
     livro.delete()
     messages.success(request, 'Livro apagado!')
-    return render(request, 'meus_livros_venda.html')
+    return render(request, 'meus_livros_venda.html', {
+        'meus_livros_venda': Cad_venda.objects.filter(usuario = request.user)
+    })
 
 def apagar_livro_compra(request):
     id = request.POST['id']
     livro = Cad_compra.objects.get(pk = id)
     livro.delete()
     messages.success(request, 'Livro apagado!')
-    return render(request, 'meus_livros_compra.html')
+    return render(request, 'meus_livros_compra.html', {
+        'meus_livros_compra': Cad_compra.objects.filter(usuario = request.user)
+    })
