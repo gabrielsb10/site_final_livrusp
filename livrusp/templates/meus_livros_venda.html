@@ -10,7 +10,7 @@
 {% if user.is_authenticated %}
 <div class="card">
  
-<p>Olá {{ user.customer.name }}!Aqui você pode ver os livros que disponibilizou para venda, de forma a organizá-los para facilitar o acesso a estes
+<p>Olá, {{ user.customer.name }}! Aqui você pode ver os livros que disponibilizou para venda, de forma a organizá-los para facilitar o acesso a estes
     e permitir uma melhor vizualicação.</p>
 </div>
 {% for livro in meus_livros_venda %}
