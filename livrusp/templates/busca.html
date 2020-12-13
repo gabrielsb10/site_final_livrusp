@@ -28,7 +28,7 @@
   {% for result in results %}
   <li>
     <h3>Título do livro: {{result.title}} | Autor: {{result.author}}</h3>
-    Vendedor: {{result.usuario.customer.name}} | Telefone do vendedor: {{result.usuario.customer.phone}}<br>
+    Vendedor: {{result.usuario.customer.name}} | Campus: {{result.usuario.customer.campus}} | Telefone do vendedor: {{result.usuario.customer.phone}}<br>
     <form id='{{result.id}}' action="{% url 'chat' %}" method='post'>
       {% csrf_token %}
       <input type='text' required name='mensagem'>
